@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<v:ViewBase xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:v="clr-namespace:Dusty.Views"
+    xmlns:vm="clr-namespace:Dusty.ViewModels"
+    x:Class="Dusty.Views.CellarView"
+    x:TypeArguments="vm:CellarViewModel"
+    Title="Cellar">
+  
+  <ListView
+      BackgroundColor="#27ae60"
+      SeparatorVisibility="None"
+      ItemsSource="{Binding Entries}"
+      IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+      IsPullToRefreshEnabled="true"
+      RefreshCommand="{Binding RefreshCommand}">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <TextCell Text="{Binding Beer.Name}" Detail="{Binding Beer.BreweryName}" TextColor="White" />
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+
+</v:ViewBase>
