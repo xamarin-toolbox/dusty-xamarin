@@ -84,6 +84,9 @@ namespace Dusty.Services
             nav.SetBinding(NavigationPage.IconProperty, new Binding(nameof(Page.Icon), source: child));
             nav.SetBinding(NavigationPage.TitleProperty, new Binding(nameof(Page.Title), source: child));
 
+            nav.BarTextColor = Color.White;
+            nav.BarBackgroundColor = Color.FromRgb(0x37, 0x47, 0x4F);
+
             return nav;
         }
     }

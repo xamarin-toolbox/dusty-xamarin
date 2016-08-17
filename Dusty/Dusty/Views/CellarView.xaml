@@ -5,18 +5,96 @@
     xmlns:vm="clr-namespace:Dusty.ViewModels"
     x:Class="Dusty.Views.CellarView"
     x:TypeArguments="vm:CellarViewModel"
-    Title="Cellar">
+    Title="Cellar"
+    BackgroundColor="#ECEFF1"
+    Icon="rack.png">
+
+  <!--<v:ViewBase.Icon>
+    <OnPlatform x:TypeArguments="ImageSource">
+      <OnPlatform.iOS>rack.png</OnPlatform.iOS>
+    </OnPlatform>
+  </v:ViewBase.Icon>-->
   
   <ListView
-      BackgroundColor="#27ae60"
+      Margin="0,12,0,0"
+      BackgroundColor="#ECEFF1"
       SeparatorVisibility="None"
       ItemsSource="{Binding Entries}"
       IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
       IsPullToRefreshEnabled="true"
-      RefreshCommand="{Binding RefreshCommand}">
+      RefreshCommand="{Binding RefreshCommand}"
+      RowHeight="204">
     <ListView.ItemTemplate>
       <DataTemplate>
-        <TextCell Text="{Binding Beer.Name}" Detail="{Binding Beer.BreweryName}" TextColor="White" />
+        <ViewCell>
+          <AbsoluteLayout HeightRequest="192" Margin="0,0,0,12">
+
+            <!-- Background -->
+            <BoxView BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
+
+            <!-- Top Border -->
+            <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional" />
+
+            <!-- Button Tray Top Border -->
+            <AbsoluteLayout AbsoluteLayout.LayoutBounds="0,1,1,41" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional">
+              <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="WidthProportional" />
+            </AbsoluteLayout>
+
+            <!-- Bottom -->
+            <AbsoluteLayout AbsoluteLayout.LayoutBounds="0,1,1,9" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional">
+
+              <!-- Bottom Border -->
+              <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+              <!-- Bottom Shadow -->
+              <BoxView BackgroundColor="#CFD8DC" AbsoluteLayout.LayoutBounds="0,1,1,8" AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+            </AbsoluteLayout>
+
+            <!-- Image Placeholder -->
+            <ContentView AbsoluteLayout.LayoutBounds="10,16,64,64" BackgroundColor="#ECEFF1"></ContentView>
+
+            <!-- Beer Name -->
+            <Label AbsoluteLayout.LayoutBounds="84,13,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
+                   Text="{Binding Beer.Name}" TextColor="#546E7A" FontSize="20" />
+
+            <!-- Brewery Name -->
+            <Label AbsoluteLayout.LayoutBounds="84,39,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
+                   Text="{Binding Beer.BreweryName}" TextColor="#90A4AE" FontSize="16" />
+
+            <!-- ABV and Style -->
+            <Label AbsoluteLayout.LayoutBounds="84,62,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
+                   Text="13% IMPERIAL STOUT" TextColor="#90A4AE" FontSize="12" />
+
+            <!-- Dates -->
+            <Label AbsoluteLayout.LayoutBounds="10,88,60,40"
+                   HorizontalTextAlignment="End"
+                   Text="ADDED" TextColor="#B0BEC5" FontSize="12" />
+
+            <Label AbsoluteLayout.LayoutBounds="84,88,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
+                   Text="AUGUST 2016" TextColor="#607D8B" FontSize="12" />
+
+            <Label AbsoluteLayout.LayoutBounds="10,106,60,40"
+                   HorizontalTextAlignment="End"
+                   Text="BOTTLED" TextColor="#B0BEC5" FontSize="12" />
+
+            <Label AbsoluteLayout.LayoutBounds="84,106,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
+                   Text="JANUARY 2016" TextColor="#607D8B" FontSize="12" />
+
+            <Label AbsoluteLayout.LayoutBounds="10,124,60,40"
+                   HorizontalTextAlignment="End"
+                   Text="EXPIRES" TextColor="#B0BEC5" FontSize="12" />
+
+            <Label AbsoluteLayout.LayoutBounds="84,124,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
+                   Text="JANUARY 2024" TextColor="#607D8B" FontSize="12" />
+
+            <ContentView AbsoluteLayout.LayoutBounds="0,12,1,40" AbsoluteLayout.LayoutFlags="WidthProportional" Padding="0,0,8,0">
+              <Label HorizontalTextAlignment="End"
+                     Text="‘16" TextColor="#90A4AE" FontSize="20" />
+            </ContentView>
+
+          </AbsoluteLayout>
+        </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>

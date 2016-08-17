@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using HockeyApp.iOS;
+using Xamarin.Forms;
 
 namespace Dusty.iOS
 {
@@ -34,7 +35,38 @@ namespace Dusty.iOS
             // Load our app.
             LoadApplication(app);
 
+            // Styling.
+            ApplyStyle();
+
             return base.FinishedLaunching(uiApp, options);
+        }
+
+        //private void ApplyStyle()
+        //{
+        //    //UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
+        //    //UIApplication.SharedApplication.SetStatusBarHidden(false, false);
+
+        //    UINavigationBar.Appearance.TintColor = UIColor.White;
+        //    UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(0x37, 0x47, 0x4F);
+        //    //UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White });
+        //    //UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes() { ForegroundColor = UIColor.White };
+        //    //UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White }, UIControlState.Normal);
+        //}
+
+        private void ApplyStyle()
+        {
+            var tint = UIColor.FromRGB(0x37, 0x47, 0x4F);
+
+            UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
+
+            UINavigationBar.Appearance.TintColor = UIColor.White;
+            UINavigationBar.Appearance.BarTintColor = tint;
+            UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White }, UIControlState.Normal);
+
+            UISearchBar.Appearance.TintColor = tint;
+            UIBarButtonItem.Appearance.TintColor = tint;
+
+            UIView.Appearance.TintColor = tint;
         }
 
         private void InitializeHockeyApp()

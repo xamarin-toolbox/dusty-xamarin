@@ -5,6 +5,7 @@
     xmlns:vm="clr-namespace:Dusty.ViewModels"
     x:Class="Dusty.Views.FeedView"
     x:TypeArguments="vm:FeedViewModel"
-    Title="Feed">
+    Title="Feed"
+    Icon="feed.png">
 
 </v:ViewBase>

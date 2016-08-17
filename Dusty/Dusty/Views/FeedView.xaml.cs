@@ -18,7 +18,7 @@ namespace Dusty.Views
         {
             InitializeComponent();
 
-            NavigationPage.SetHasNavigationBar(this, false);
+            //NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

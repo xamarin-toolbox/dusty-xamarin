@@ -23,7 +23,8 @@ namespace Dusty
             InitializeComponent();
 
             Secrets = ReadSecrets();
-            Client = new RestClient("http://192.168.1.75:8000/");
+            //Client = new RestClient("http://192.168.1.75:8000/");
+            Client = new RestClient("http://brock.in:4120/");
 
             Bootstrap.Run(this);
         }
