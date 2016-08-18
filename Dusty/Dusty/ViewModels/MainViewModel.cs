@@ -8,9 +8,9 @@ namespace Dusty.ViewModels
 {
     public class MainViewModel : TabViewModelBase
     {
-        public MainViewModel(CellarViewModel cellar, FeedViewModel feed)
+        public MainViewModel(CellarViewModel cellar, FeedViewModel feed, ProfileViewModel profile, SettingsViewModel settings)
         {
-            Tabs = new List<IViewModel> { cellar, feed };
+            Tabs = new List<IViewModel> { cellar, feed, profile, settings };
         }
     }
 }

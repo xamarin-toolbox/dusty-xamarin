@@ -61,12 +61,15 @@ namespace Dusty.iOS
 
             UINavigationBar.Appearance.TintColor = UIColor.White;
             UINavigationBar.Appearance.BarTintColor = tint;
-            UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White }, UIControlState.Normal);
+            //UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White }, UIControlState.Normal);
 
             UISearchBar.Appearance.TintColor = tint;
-            UIBarButtonItem.Appearance.TintColor = tint;
+            //UIBarButtonItem.Appearance.TintColor = tint;
 
             UIView.Appearance.TintColor = tint;
+
+            UITabBar.Appearance.BarTintColor = tint;
+            UITabBar.Appearance.TintColor = UIColor.White;
         }
 
         private void InitializeHockeyApp()

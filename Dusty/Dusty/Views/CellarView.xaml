@@ -3,11 +3,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:v="clr-namespace:Dusty.Views"
     xmlns:vm="clr-namespace:Dusty.ViewModels"
+    xmlns:c="clr-namespace:Dusty.Views.Converters"
     x:Class="Dusty.Views.CellarView"
     x:TypeArguments="vm:CellarViewModel"
     Title="Cellar"
     BackgroundColor="#ECEFF1"
     Icon="rack.png">
+
+  <v:ViewBase.Resources>
+    <ResourceDictionary>
+      <c:ShortDateConverter x:Key="ShortDateConverter" />
+    </ResourceDictionary>
+  </v:ViewBase.Resources>
 
   <!--<v:ViewBase.Icon>
     <OnPlatform x:TypeArguments="ImageSource">
@@ -16,7 +23,6 @@
   </v:ViewBase.Icon>-->
   
   <ListView
-      Margin="0,12,0,0"
       BackgroundColor="#ECEFF1"
       SeparatorVisibility="None"
       ItemsSource="{Binding Entries}"
@@ -27,13 +33,19 @@
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
-          <AbsoluteLayout HeightRequest="192" Margin="0,0,0,12">
+          <AbsoluteLayout HeightRequest="192" Margin="12,12,12,0">
 
             <!-- Background -->
             <BoxView BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
 
             <!-- Top Border -->
             <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional" />
+
+            <!-- Left Border -->
+            <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional" />
+
+            <!-- Right Border -->
+            <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="1,0,1,1" AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional" />
 
             <!-- Button Tray Top Border -->
             <AbsoluteLayout AbsoluteLayout.LayoutBounds="0,1,1,41" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional">
@@ -72,21 +84,21 @@
                    Text="ADDED" TextColor="#B0BEC5" FontSize="12" />
 
             <Label AbsoluteLayout.LayoutBounds="84,88,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
-                   Text="AUGUST 2016" TextColor="#607D8B" FontSize="12" />
+                   Text="{Binding DateAdded, Converter={StaticResource ShortDateConverter}}" TextColor="#607D8B" FontSize="12" />
 
             <Label AbsoluteLayout.LayoutBounds="10,106,60,40"
                    HorizontalTextAlignment="End"
                    Text="BOTTLED" TextColor="#B0BEC5" FontSize="12" />
 
             <Label AbsoluteLayout.LayoutBounds="84,106,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
-                   Text="JANUARY 2016" TextColor="#607D8B" FontSize="12" />
+                   Text="{Binding DateProduced, Converter={StaticResource ShortDateConverter}}" TextColor="#607D8B" FontSize="12" />
 
             <Label AbsoluteLayout.LayoutBounds="10,124,60,40"
                    HorizontalTextAlignment="End"
                    Text="EXPIRES" TextColor="#B0BEC5" FontSize="12" />
 
             <Label AbsoluteLayout.LayoutBounds="84,124,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
-                   Text="JANUARY 2024" TextColor="#607D8B" FontSize="12" />
+                   Text="{Binding DateExpires, Converter={StaticResource ShortDateConverter}}" TextColor="#607D8B" FontSize="12" />
 
             <ContentView AbsoluteLayout.LayoutBounds="0,12,1,40" AbsoluteLayout.LayoutFlags="WidthProportional" Padding="0,0,8,0">
               <Label HorizontalTextAlignment="End"

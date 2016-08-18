@@ -52,13 +52,17 @@ namespace Dusty
         private static void RegisterApp(ContainerBuilder builder)
         {
             // You can add your own app services, view models & view registrations here.
+            builder.RegisterType<MainViewModel>();
             builder.RegisterType<CellarViewModel>();
             builder.RegisterType<FeedViewModel>();
-            builder.RegisterType<MainViewModel>();
+            builder.RegisterType<ProfileViewModel>();
+            builder.RegisterType<SettingsViewModel>();
 
             builder.RegisterType<MainView>();
             builder.RegisterType<CellarView>();
             builder.RegisterType<FeedView>();
+            builder.RegisterType<ProfileView>();
+            builder.RegisterType<SettingsView>();
         }
 
         private static void RegisterViews(IContainer container)
@@ -66,9 +70,11 @@ namespace Dusty
             var viewService = container.Resolve<IViewService>();
 
             // You can add your view model -> view registrations here.
+            viewService.Register<MainViewModel, MainView>();
             viewService.Register<CellarViewModel, CellarView>();
             viewService.Register<FeedViewModel, FeedView>();
-            viewService.Register<MainViewModel, MainView>();
+            viewService.Register<ProfileViewModel, ProfileView>();
+            viewService.Register<SettingsViewModel, SettingsView>();
         }
 
         // ===========================================================================
