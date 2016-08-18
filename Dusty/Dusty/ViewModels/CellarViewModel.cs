@@ -29,18 +29,28 @@ namespace Dusty.ViewModels
 
             Entries = new ObservableCollection<CellarDto>();
             RefreshCommand = new Command(async () => await DoRefreshCommand());
+
+            DoRefreshCommand();
         }
 
         private async Task DoRefreshCommand()
         {
-            var req = new RestRequest("cellar", Method.GET);
-            var res = await App.Client.Execute<List<CellarDto>>(req);
+            try
+            {
+                IsRefreshing = true;
 
-            if (res.StatusCode != System.Net.HttpStatusCode.OK)
-                await UserDialogs.Instance.AlertAsync("Error refreshing cellar.");
+                var req = new RestRequest("cellar", Method.GET);
+                var res = await App.Client.Execute<List<CellarDto>>(req);
 
-            IsRefreshing = false;
-            Entries = new ObservableCollection<CellarDto>(res.Data);
+                if (res.StatusCode != System.Net.HttpStatusCode.OK)
+                    await UserDialogs.Instance.AlertAsync("Error refreshing cellar.");
+
+                Entries = new ObservableCollection<CellarDto>(res.Data);
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
         }
     }
 }
