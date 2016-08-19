@@ -5,13 +5,10 @@
     xmlns:vm="clr-namespace:Dusty.ViewModels"
     x:Class="Dusty.Views.ProfileView"
     x:TypeArguments="vm:ProfileViewModel"
-    Title="Profile"
-    Icon="profile.png">
+    Title="Profile">
 
-  <!--<v:ViewBase.Icon>
-    <OnPlatform x:TypeArguments="ImageSource">
-      <OnPlatform.iOS>profile.png</OnPlatform.iOS>
-    </OnPlatform>
-  </v:ViewBase.Icon>-->
+  <v:ViewBase.Icon>
+    <OnPlatform x:TypeArguments="FileImageSource" iOS="profile.png" />
+  </v:ViewBase.Icon>
 
 </v:ViewBase>

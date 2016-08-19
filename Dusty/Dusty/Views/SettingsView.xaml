@@ -5,13 +5,10 @@
     xmlns:vm="clr-namespace:Dusty.ViewModels"
     x:Class="Dusty.Views.SettingsView"
     x:TypeArguments="vm:SettingsViewModel"
-    Title="Settings"
-    Icon="settings.png">
+    Title="Settings">
 
-  <!--<v:ViewBase.Icon>
-    <OnPlatform x:TypeArguments="ImageSource">
-      <OnPlatform.iOS>settings.png</OnPlatform.iOS>
-    </OnPlatform>
-  </v:ViewBase.Icon>-->
+  <v:ViewBase.Icon>
+    <OnPlatform x:TypeArguments="FileImageSource" iOS="settings.png" />
+  </v:ViewBase.Icon>
 
 </v:ViewBase>

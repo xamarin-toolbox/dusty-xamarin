@@ -5,13 +5,10 @@
     xmlns:vm="clr-namespace:Dusty.ViewModels"
     x:Class="Dusty.Views.FeedView"
     x:TypeArguments="vm:FeedViewModel"
-    Title="Feed"
-    Icon="feed.png">
+    Title="Feed">
 
-  <!--<v:ViewBase.Icon>
-    <OnPlatform x:TypeArguments="ImageSource">
-      <OnPlatform.iOS>feed.png</OnPlatform.iOS>
-    </OnPlatform>
-  </v:ViewBase.Icon>-->
+  <v:ViewBase.Icon>
+    <OnPlatform x:TypeArguments="FileImageSource" iOS="feed.png" />
+  </v:ViewBase.Icon>
 
 </v:ViewBase>

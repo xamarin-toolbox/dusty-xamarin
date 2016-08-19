@@ -29,8 +29,6 @@ namespace Dusty.ViewModels
 
             Entries = new ObservableCollection<CellarDto>();
             RefreshCommand = new Command(async () => await DoRefreshCommand());
-
-            DoRefreshCommand();
         }
 
         private async Task DoRefreshCommand()
@@ -45,7 +43,13 @@ namespace Dusty.ViewModels
                 if (res.StatusCode != System.Net.HttpStatusCode.OK)
                     await UserDialogs.Instance.AlertAsync("Error refreshing cellar.");
 
-                Entries = new ObservableCollection<CellarDto>(res.Data);
+                var filtered = res.Data
+                    .Where(x => x.DateRemoved == null)
+                    .OrderByDescending(x => x.DateAdded)
+                    .ThenBy(x => x.Beer.BreweryName)
+                    .ThenBy(x => x.Beer.Name);
+                
+                Entries = new ObservableCollection<CellarDto>(filtered);
             }
             finally
             {

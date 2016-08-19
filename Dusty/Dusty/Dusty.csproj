@@ -39,6 +39,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bootstrap.cs" />
+    <Compile Include="Controls\ListViewNoSelection.cs" />
     <Compile Include="Models\CellarDto.cs" />
     <Compile Include="Platform\Secrets\Secrets.cs" />
     <Compile Include="Platform\ViewModels\IViewModelWithTabs.cs" />
@@ -58,6 +59,10 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\FeedViewModel.cs" />
     <Compile Include="ViewModels\CellarViewModel.cs" />
+    <Compile Include="Views\Converters\AbvStyleConverter.cs" />
+    <Compile Include="Views\Converters\BeerNameConverter.cs" />
+    <Compile Include="Views\Converters\VintageConverter.cs" />
+    <Compile Include="Views\Converters\RateBeerImageConverter.cs" />
     <Compile Include="Views\Converters\ShortDateConverter.cs" />
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>

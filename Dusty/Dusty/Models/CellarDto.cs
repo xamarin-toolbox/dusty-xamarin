@@ -20,7 +20,7 @@ namespace Dusty.Models
         [JsonProperty("removalReason")] public string RemovalReason { get; set; }
         [JsonProperty("containerType")] public string ContainerType { get; set; }
         [JsonProperty("containerSize")] public string ContainerSize { get; set; }
-        [JsonProperty("vintage")]       public string Vintage { get; set; }
+        [JsonProperty("vintage")]       public int? Vintage { get; set; }
         [JsonProperty("notes")]         public string Notes { get; set; }
         [JsonProperty("location")]      public string Location { get; set; }
         [JsonProperty("beer")]          public BeerDto Beer { get; set; }
