@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using HockeyApp.iOS;
 using Xamarin.Forms;
+using MaterialDesignColors;
 
 namespace Dusty.iOS
 {
@@ -41,35 +42,22 @@ namespace Dusty.iOS
             return base.FinishedLaunching(uiApp, options);
         }
 
-        //private void ApplyStyle()
-        //{
-        //    //UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
-        //    //UIApplication.SharedApplication.SetStatusBarHidden(false, false);
-
-        //    UINavigationBar.Appearance.TintColor = UIColor.White;
-        //    UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(0x37, 0x47, 0x4F);
-        //    //UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White });
-        //    //UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes() { ForegroundColor = UIColor.White };
-        //    //UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White }, UIControlState.Normal);
-        //}
-
         private void ApplyStyle()
         {
-            var tint = UIColor.FromRGB(0x37, 0x47, 0x4F);
-
+            // Set status bar to 'light mode'.
             UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
 
-            UINavigationBar.Appearance.TintColor = UIColor.White;
-            UINavigationBar.Appearance.BarTintColor = tint;
-            //UIBarButtonItem.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = UIColor.White }, UIControlState.Normal);
+            // Navigation bar (NB. This is also set in ViewService.WrapWithNavigationPage).
+            UINavigationBar.Appearance.TintColor = MaterialColors.PrimaryHueMidForeground.ToUIColor();
+            UINavigationBar.Appearance.BarTintColor = MaterialColors.PrimaryHueMid.ToUIColor();
 
-            UISearchBar.Appearance.TintColor = tint;
+            // Tab bar (inverted).
+            UITabBar.Appearance.TintColor = MaterialColors.PrimaryHueMid.ToUIColor();
+            UITabBar.Appearance.BarTintColor = MaterialColors.PrimaryHueMidForeground.ToUIColor();
+
+            //UISearchBar.Appearance.TintColor = tint;
             //UIBarButtonItem.Appearance.TintColor = tint;
-
-            UIView.Appearance.TintColor = tint;
-
-            UITabBar.Appearance.BarTintColor = tint;
-            UITabBar.Appearance.TintColor = UIColor.White;
+            //UIView.Appearance.TintColor = tint;
         }
 
         private void InitializeHockeyApp()

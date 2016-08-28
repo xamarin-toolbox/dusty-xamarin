@@ -4,7 +4,8 @@
              x:Class="Dusty.App">
   <Application.Resources>
 
-    <!-- Application resource dictionary -->
+    <ResourceDictionary>
+    </ResourceDictionary>
 
   </Application.Resources>
 </Application>

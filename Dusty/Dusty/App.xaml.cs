@@ -1,3 +1,4 @@
+using MaterialDesignColors;
 using Newtonsoft.Json;
 using RestSharp.Portable.HttpClient;
 using System;
@@ -21,6 +22,9 @@ namespace Dusty
         public App()
         {
             InitializeComponent();
+
+            MaterialColors.Initialize(MaterialColors.Blue, MaterialColors.LightBlue);
+            var x = MaterialColors.Grey.Primary300;
 
             Secrets = ReadSecrets();
             //Client = new RestClient("http://192.168.1.75:8000/");

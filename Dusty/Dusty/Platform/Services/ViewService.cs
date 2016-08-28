@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Autofac;
 using Dusty.Views;
+using MaterialDesignColors;
 
 namespace Dusty.Services
 {
@@ -81,11 +82,11 @@ namespace Dusty.Services
         {
             var nav = new NavigationPage(child);
 
-            nav.SetBinding(NavigationPage.IconProperty, new Binding(nameof(Page.Icon), source: child));
+            nav.SetBinding(NavigationPage.IconProperty,  new Binding(nameof(Page.Icon),  source: child));
             nav.SetBinding(NavigationPage.TitleProperty, new Binding(nameof(Page.Title), source: child));
 
-            nav.BarTextColor = Color.White;
-            nav.BarBackgroundColor = Color.FromRgb(0x37, 0x47, 0x4F);
+            nav.BarTextColor       = MaterialColors.PrimaryHueMidForeground;
+            nav.BarBackgroundColor = MaterialColors.PrimaryHueMid;
 
             return nav;
         }

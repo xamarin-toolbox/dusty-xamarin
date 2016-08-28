@@ -5,10 +5,10 @@
     xmlns:vm="clr-namespace:Dusty.ViewModels"
     xmlns:c="clr-namespace:Dusty.Views.Converters"
     xmlns:controls="clr-namespace:Dusty.Controls"
+    xmlns:mat="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
     x:Class="Dusty.Views.CellarView"
     x:TypeArguments="vm:CellarViewModel"
-    Title="Cellar"
-    BackgroundColor="#ECEFF1">
+    Title="Cellar">
 
   <v:ViewBase.Resources>
     <ResourceDictionary>
@@ -23,98 +23,106 @@
   <v:ViewBase.Icon>
     <OnPlatform x:TypeArguments="FileImageSource" iOS="rack.png" />
   </v:ViewBase.Icon>
-  
-  <ListView
-      BackgroundColor="#ECEFF1"
-      SeparatorVisibility="None"
-      ItemsSource="{Binding Entries}"
-      IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
-      IsPullToRefreshEnabled="true"
-      RefreshCommand="{Binding RefreshCommand}"
-      ItemSelected="OnItemSelected"
-      RowHeight="198">
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <AbsoluteLayout HeightRequest="186" Margin="12,12,12,0">
 
-            <!-- Background -->
-            <BoxView BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
+  <AbsoluteLayout>
+    <ListView
+        BackgroundColor="{x:Static mat:Grey.Primary100}"
+        AbsoluteLayout.LayoutBounds="0,0,1,1"
+        AbsoluteLayout.LayoutFlags="All"
+        SeparatorVisibility="None"
+        ItemsSource="{Binding Entries}"
+        IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+        IsPullToRefreshEnabled="true"
+        RefreshCommand="{Binding RefreshCommand}"
+        ItemSelected="OnItemSelected"
+        RowHeight="198">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <AbsoluteLayout HeightRequest="186" Margin="0,12,0,0">
 
-            <!-- Top Border -->
-            <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional" />
+              <!-- Background -->
+              <BoxView BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
 
-            <!-- Left Border -->
-            <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional" />
+              <!-- Top Border -->
+              <BoxView BackgroundColor="{x:Static mat:Grey.Primary200}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional" />
 
-            <!-- Right Border -->
-            <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="1,0,1,1" AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional" />
+              <!-- Left Border -->
+              <!--<BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional" />-->
 
-            <!-- Button Tray Top Border -->
-            <AbsoluteLayout AbsoluteLayout.LayoutBounds="0,1,1,41" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional">
-              <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="WidthProportional" />
+              <!-- Right Border -->
+              <!--<BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="1,0,1,1" AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional" />-->
+
+              <!-- Button Tray Top Border -->
+              <!--<AbsoluteLayout AbsoluteLayout.LayoutBounds="0,1,1,41" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional">
+                <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="WidthProportional" />
+              </AbsoluteLayout>-->
+
+              <!-- Bottom -->
+              <BoxView AbsoluteLayout.LayoutBounds="0,1,1,1" BackgroundColor="{x:Static mat:Grey.Primary300}" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional" />
+              <!--<AbsoluteLayout AbsoluteLayout.LayoutBounds="0,1,1,9" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional">
+
+                --><!-- Bottom Border --><!--
+        
+                --><!-- Bottom Shadow --><!--
+                --><!--<BoxView BackgroundColor="#CFD8DC" AbsoluteLayout.LayoutBounds="0,1,1,8" AbsoluteLayout.LayoutFlags="WidthProportional" />--><!--
+
+              </AbsoluteLayout>-->
+
+              <!-- Image Placeholder -->
+              <!--<ContentView AbsoluteLayout.LayoutBounds="10,16,64,64" BackgroundColor="#ECEFF1"></ContentView>-->
+
+              <!-- Image -->
+              <Image AbsoluteLayout.LayoutBounds="10,10,64,64" BackgroundColor="{x:Static mat:Grey.Primary100}" Source="{Binding Beer.RateBeer.Id, Converter={StaticResource RateBeerImageConverter}}" />
+
+              <!-- Beer Name -->
+              <Label AbsoluteLayout.LayoutBounds="84,7,1,40" AbsoluteLayout.LayoutFlags="WidthProportional" Margin="0,0,132,0"
+                     Text="{Binding Converter={StaticResource BeerNameConverter}}" TextColor="Black" FontSize="20" LineBreakMode="TailTruncation" />
+
+              <!-- Brewery Name -->
+              <Label AbsoluteLayout.LayoutBounds="84,32,1,40" AbsoluteLayout.LayoutFlags="WidthProportional" Margin="0,0,132,0"
+                     Text="{Binding Beer.BreweryName}" TextColor="{x:Static mat:Grey.Primary800}" FontSize="16" LineBreakMode="TailTruncation"  />
+
+              <!-- ABV and Style -->
+              <Label AbsoluteLayout.LayoutBounds="84,56,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
+                     Text="{Binding Converter={StaticResource AbvStyleConverter}}" TextColor="{x:Static mat:Grey.Primary700}" FontSize="12" />
+
+              <!-- Dates -->
+              <Label AbsoluteLayout.LayoutBounds="10,82,60,40"
+                     HorizontalTextAlignment="End"
+                     Text="ADDED" TextColor="{x:Static mat:Grey.Primary400}" FontSize="12" />
+
+              <Label AbsoluteLayout.LayoutBounds="84,82,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
+                     Text="{Binding DateAdded, Converter={StaticResource ShortDateConverter}}" TextColor="{x:Static mat:Grey.Primary700}" FontSize="12" />
+
+              <Label AbsoluteLayout.LayoutBounds="10,100,60,40"
+                     HorizontalTextAlignment="End"
+                     Text="BOTTLED" TextColor="{x:Static mat:Grey.Primary400}" FontSize="12" />
+
+              <Label AbsoluteLayout.LayoutBounds="84,100,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
+                     Text="{Binding DateProduced, Converter={StaticResource ShortDateConverter}}" TextColor="{x:Static mat:Grey.Primary700}" FontSize="12" />
+
+              <Label AbsoluteLayout.LayoutBounds="10,118,60,40"
+                     HorizontalTextAlignment="End"
+                     Text="EXPIRES" TextColor="{x:Static mat:Grey.Primary400}" FontSize="12" />
+
+              <Label AbsoluteLayout.LayoutBounds="84,118,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
+                     Text="{Binding DateExpires, Converter={StaticResource ShortDateConverter}}" TextColor="{x:Static mat:Grey.Primary700}" FontSize="12" />
+
+              <ContentView AbsoluteLayout.LayoutBounds="0,4,1,40" AbsoluteLayout.LayoutFlags="WidthProportional" Padding="0,0,8,0">
+                <Label HorizontalTextAlignment="End"
+                       Text="{Binding Converter={StaticResource VintageConverter}}" TextColor="{x:Static mat:Grey.Primary700}" FontSize="20" />
+              </ContentView>
+
             </AbsoluteLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
 
-            <!-- Bottom -->
-            <AbsoluteLayout AbsoluteLayout.LayoutBounds="0,1,1,9" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional">
-
-              <!-- Bottom Border -->
-              <BoxView BackgroundColor="#B0BEC5" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="WidthProportional" />
-
-              <!-- Bottom Shadow -->
-              <BoxView BackgroundColor="#CFD8DC" AbsoluteLayout.LayoutBounds="0,1,1,8" AbsoluteLayout.LayoutFlags="WidthProportional" />
-
-            </AbsoluteLayout>
-
-            <!-- Image Placeholder -->
-            <!--<ContentView AbsoluteLayout.LayoutBounds="10,16,64,64" BackgroundColor="#ECEFF1"></ContentView>-->
-
-            <!-- Image -->
-            <Image AbsoluteLayout.LayoutBounds="10,10,64,64" BackgroundColor="#ECEFF1" Source="{Binding Beer.RateBeer.Id, Converter={StaticResource RateBeerImageConverter}}" />
-
-            <!-- Beer Name -->
-            <Label AbsoluteLayout.LayoutBounds="84,7,1,40" AbsoluteLayout.LayoutFlags="WidthProportional" Margin="0,0,132,0"
-                   Text="{Binding Converter={StaticResource BeerNameConverter}}" TextColor="#546E7A" FontSize="20" LineBreakMode="TailTruncation" />
-
-            <!-- Brewery Name -->
-            <Label AbsoluteLayout.LayoutBounds="84,32,1,40" AbsoluteLayout.LayoutFlags="WidthProportional" Margin="0,0,132,0"
-                   Text="{Binding Beer.BreweryName}" TextColor="#90A4AE" FontSize="16" LineBreakMode="TailTruncation"  />
-
-            <!-- ABV and Style -->
-            <Label AbsoluteLayout.LayoutBounds="84,56,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
-                   Text="{Binding Converter={StaticResource AbvStyleConverter}}" TextColor="#90A4AE" FontSize="12" />
-
-            <!-- Dates -->
-            <Label AbsoluteLayout.LayoutBounds="10,82,60,40"
-                   HorizontalTextAlignment="End"
-                   Text="ADDED" TextColor="#B0BEC5" FontSize="12" />
-
-            <Label AbsoluteLayout.LayoutBounds="84,82,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
-                   Text="{Binding DateAdded, Converter={StaticResource ShortDateConverter}}" TextColor="#607D8B" FontSize="12" />
-
-            <Label AbsoluteLayout.LayoutBounds="10,100,60,40"
-                   HorizontalTextAlignment="End"
-                   Text="BOTTLED" TextColor="#B0BEC5" FontSize="12" />
-
-            <Label AbsoluteLayout.LayoutBounds="84,100,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
-                   Text="{Binding DateProduced, Converter={StaticResource ShortDateConverter}}" TextColor="#607D8B" FontSize="12" />
-
-            <Label AbsoluteLayout.LayoutBounds="10,118,60,40"
-                   HorizontalTextAlignment="End"
-                   Text="EXPIRES" TextColor="#B0BEC5" FontSize="12" />
-
-            <Label AbsoluteLayout.LayoutBounds="84,118,1,40" AbsoluteLayout.LayoutFlags="WidthProportional"
-                   Text="{Binding DateExpires, Converter={StaticResource ShortDateConverter}}" TextColor="#607D8B" FontSize="12" />
-
-            <ContentView AbsoluteLayout.LayoutBounds="0,4,1,40" AbsoluteLayout.LayoutFlags="WidthProportional" Padding="0,0,8,0">
-              <Label HorizontalTextAlignment="End"
-                     Text="{Binding Converter={StaticResource VintageConverter}}" TextColor="#90A4AE" FontSize="20" />
-            </ContentView>
-
-          </AbsoluteLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-</ListView>
-
+    <ContentView AbsoluteLayout.LayoutBounds="1,1,64,46" AbsoluteLayout.LayoutFlags="XProportional,YProportional">
+      <controls:MDButton Margin="0,0,8,8" Text="+" />
+    </ContentView>
+  </AbsoluteLayout>
+    
 </v:ViewBase>
