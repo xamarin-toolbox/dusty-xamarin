@@ -7,6 +7,7 @@ using UIKit;
 using HockeyApp.iOS;
 using Xamarin.Forms;
 using MaterialDesignColors;
+using NControl.Controls.iOS;
 
 namespace Dusty.iOS
 {
@@ -32,6 +33,9 @@ namespace Dusty.iOS
 
             // Start HockeyApp manager.
             InitializeHockeyApp();
+
+            // Initialize NControls.
+            NControls.Init();
 
             // Load our app.
             LoadApplication(app);

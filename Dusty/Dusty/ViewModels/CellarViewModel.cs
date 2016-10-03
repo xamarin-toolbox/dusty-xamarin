@@ -19,6 +19,8 @@ namespace Dusty.ViewModels
     {
         public bool IsRefreshing { get; set; }
         public ICommand RefreshCommand { get; }
+        public ICommand AddBeerCommand { get; }
+        public ICommand ScanBeerCommand { get; }
         public IList<CellarDto> Entries { get; private set; }
 
         private INavigationService _navigation;
@@ -29,6 +31,18 @@ namespace Dusty.ViewModels
 
             Entries = new ObservableCollection<CellarDto>();
             RefreshCommand = new Command(async () => await DoRefreshCommand());
+            AddBeerCommand = new Command(async () => await DoAddBeerCommand());
+            ScanBeerCommand = new Command(async () => await DoScanBeerCommand());
+        }
+
+        private async Task DoAddBeerCommand()
+        {
+
+        }
+
+        private async Task DoScanBeerCommand()
+        {
+
         }
 
         private async Task DoRefreshCommand()

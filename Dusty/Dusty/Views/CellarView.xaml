@@ -4,6 +4,7 @@
     xmlns:v="clr-namespace:Dusty.Views"
     xmlns:vm="clr-namespace:Dusty.ViewModels"
     xmlns:c="clr-namespace:Dusty.Views.Converters"
+    xmlns:n="clr-namespace:NControl.Controls;assembly=NControl.Controls"
     xmlns:controls="clr-namespace:Dusty.Controls"
     xmlns:mat="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
     x:Class="Dusty.Views.CellarView"
@@ -24,11 +25,17 @@
     <OnPlatform x:TypeArguments="FileImageSource" iOS="rack.png" />
   </v:ViewBase.Icon>
 
-  <AbsoluteLayout>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <SearchBar Grid.Row="0" BackgroundColor="{x:Static mat:LightBlue.Primary400}" />
+    
     <ListView
+        Grid.Row="1"
         BackgroundColor="{x:Static mat:Grey.Primary100}"
-        AbsoluteLayout.LayoutBounds="0,0,1,1"
-        AbsoluteLayout.LayoutFlags="All"
         SeparatorVisibility="None"
         ItemsSource="{Binding Entries}"
         IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
@@ -62,10 +69,16 @@
               <BoxView AbsoluteLayout.LayoutBounds="0,1,1,1" BackgroundColor="{x:Static mat:Grey.Primary300}" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional" />
               <!--<AbsoluteLayout AbsoluteLayout.LayoutBounds="0,1,1,9" AbsoluteLayout.LayoutFlags="XProportional, YProportional, WidthProportional">
 
-                --><!-- Bottom Border --><!--
+                -->
+              <!-- Bottom Border -->
+              <!--
         
-                --><!-- Bottom Shadow --><!--
-                --><!--<BoxView BackgroundColor="#CFD8DC" AbsoluteLayout.LayoutBounds="0,1,1,8" AbsoluteLayout.LayoutFlags="WidthProportional" />--><!--
+                -->
+              <!-- Bottom Shadow -->
+              <!--
+                -->
+              <!--<BoxView BackgroundColor="#CFD8DC" AbsoluteLayout.LayoutBounds="0,1,1,8" AbsoluteLayout.LayoutFlags="WidthProportional" />-->
+              <!--
 
               </AbsoluteLayout>-->
 
@@ -120,9 +133,24 @@
       </ListView.ItemTemplate>
     </ListView>
 
-    <ContentView AbsoluteLayout.LayoutBounds="1,1,64,46" AbsoluteLayout.LayoutFlags="XProportional,YProportional">
-      <controls:MDButton Margin="0,0,8,8" Text="+" />
-    </ContentView>
-  </AbsoluteLayout>
-    
+    <!--<ContentView AbsoluteLayout.LayoutBounds="1,1,72,72" AbsoluteLayout.LayoutFlags="XProportional,YProportional">
+      <n:ActionButton
+       Command="{Binding AddBeerCommand}" Margin="16"
+       ButtonColor="{x:Static mat:MaterialColors.SecondaryAccent}"
+       ButtonIconColor="{x:Static mat:MaterialColors.SecondaryAccentForeground}"
+       HasShadow="false" />
+    </ContentView>-->
+
+    <n:ActionButton
+      Grid.Row="1"
+      Command="{Binding ScanBeerCommand}" WidthRequest="56" HeightRequest="56" VerticalOptions="End" HorizontalOptions="End" Margin="12,12,68,12"
+      ButtonColor="{x:Static mat:MaterialColors.SecondaryAccent}" ButtonIconColor="{x:Static mat:Amber.Secondary700}" HasShadow="false" />
+
+    <n:ActionButton
+      Grid.Row="1"
+      Command="{Binding AddBeerCommand}" WidthRequest="56" HeightRequest="56" VerticalOptions="End" HorizontalOptions="End" Margin="12"
+      ButtonColor="{x:Static mat:MaterialColors.SecondaryAccent}" ButtonIconColor="{x:Static mat:MaterialColors.SecondaryAccentForeground}" HasShadow="false" />
+
+  </Grid>
+  
 </v:ViewBase>
